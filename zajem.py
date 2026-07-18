@@ -1,6 +1,7 @@
 import requests  #knjiznica da pobira iz spletnih strani
 from bs4 import BeautifulSoup
 import pandas as pd
+import csv
 
 def zajem_julijske_alpe():
     url = "https://www.hribi.net/gorovje/julijske_alpe/1"
@@ -49,12 +50,19 @@ def zajem_stevilo_poti(url):
             stevilo_poti = povezava_poti.text.strip()
     return stevilo_poti
 
+def shrani_v_csv(hribi):
+    with open("hribi.csv", "w", newline = "", encoding="utf-8") as datoteka:
+        writer = csv.DictWriter(
+            datoteka,
+            fieldnames=["ime", "visina", "stevilo_poti"]
+        )
+        writer.writeheader()
+        writer.writerows(hribi)
+        
 
 print("zajem podatkov se je zacel")
 podatki = zajem_julijske_alpe()
-df = pd.DataFrame(podatki)
-df.to_csv("hribi.csv", index=False, encoding="utf-8-sig")
+shrani_v_csv(podatki)
 print("Podatki so shranjeni")
-
     #print(odgovor.status_code) #ce zazenem program mi da 200 to pomeni da koda dela, karkol drucga ne bi delal
     #print(odgovor.text[:500])
