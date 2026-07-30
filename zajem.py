@@ -1,7 +1,7 @@
-import requests  #knjiznica da pobira iz spletnih strani
-from bs4 import BeautifulSoup
-import pandas as pd
 import csv
+
+import requests
+from bs4 import BeautifulSoup
 
 def zajem_julijske_alpe():
     url = "https://www.hribi.net/gorovje/julijske_alpe/1"
@@ -23,22 +23,25 @@ def zajem_julijske_alpe():
 
             stevilo_poti = zajem_stevilo_poti(url_vrha)
 
-            hribi.append({
+            hribi.append(
+                {
                 "ime": ime.text.strip(),
                 "visina": visina.text.replace("m", "").strip(),
                 "stevilo_poti": stevilo_poti
-            })
+            }
+            )
 
             #print(hribi[-1])
     
     return hribi
 
 def zajem_stevilo_poti(url):
-
     odgovor = requests.get(url)
+
     soup = BeautifulSoup(odgovor.text, "html.parser")
+
     besedilo_poti = soup.find(
-        string = lambda besedilo: besedilo and "Število poti:" in besedilo
+        string=lambda besedilo: besedilo and "Število poti:" in besedilo
     )
 
     stevilo_poti = None
@@ -48,10 +51,16 @@ def zajem_stevilo_poti(url):
 
         if povezava_poti:
             stevilo_poti = povezava_poti.text.strip()
+
     return stevilo_poti
 
 def shrani_v_csv(hribi):
-    with open("hribi.csv", "w", newline = "", encoding="utf-8") as datoteka:
+    with open(
+        "hribi.csv", 
+        "w", 
+        newline = "", 
+        encoding="utf-8"
+    ) as datoteka:
         writer = csv.DictWriter(
             datoteka,
             fieldnames=["ime", "visina", "stevilo_poti"]
@@ -60,7 +69,7 @@ def shrani_v_csv(hribi):
         writer.writerows(hribi)
         
 
-print("zajem podatkov se je zacel")
+print("Zajem podatkov se je začel")
 podatki = zajem_julijske_alpe()
 shrani_v_csv(podatki)
 print("Podatki so shranjeni")
