@@ -5,9 +5,12 @@ from bs4 import BeautifulSoup
 
 def zajem_julijske_alpe():
     url = "https://www.hribi.net/gorovje/julijske_alpe/1"
-
+    
+    #pridobim vsebino iz spletne strani
     odgovor = requests.get(url)
     soup = BeautifulSoup(odgovor.text, "html.parser")
+
+    #poiščem vrstice s podatki o vrhovih
     vrstice = soup.find_all("tr", class_=["vr0", "vr1"])
     
     hribi = []
@@ -23,6 +26,7 @@ def zajem_julijske_alpe():
 
             stevilo_poti = zajem_stevilo_poti(url_vrha)
 
+            #shranim podatke o vrhu
             hribi.append(
                 {
                 "ime": ime.text.strip(),
@@ -40,6 +44,7 @@ def zajem_stevilo_poti(url):
 
     soup = BeautifulSoup(odgovor.text, "html.parser")
 
+    #poiščem podatek o številu poti
     besedilo_poti = soup.find(
         string=lambda besedilo: besedilo and "Število poti:" in besedilo
     )
@@ -65,6 +70,8 @@ def shrani_v_csv(hribi):
             datoteka,
             fieldnames=["ime", "visina", "stevilo_poti"]
         )
+
+        #zapišem podatke v scv
         writer.writeheader()
         writer.writerows(hribi)
         

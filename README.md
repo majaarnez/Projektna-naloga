@@ -7,7 +7,7 @@ Podatke sem pridobila s spletne streni Hrbi.net, kateri zajamejo ime vrha, nadmo
 
 ## Analiza podatkov
 V datoreki analiza.ipynb sem podatke:
-- pregleda,
+- pregledala,
 - olepšala,
 - prikazala 10 najvišjih vrhov,
 - prikazala porazdelitev višin vrhov,
