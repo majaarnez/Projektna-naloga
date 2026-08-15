@@ -4,6 +4,7 @@ Za projektno nalogo pri predmetu Uvod v programirajne sem analizirala podatke o 
 
 ## Pridobivanje podatkov
 Podatke sem pridobila s spletne streni Hrbi.net, kateri zajamejo ime vrha, nadmorsko višino in število opisanih poti. Podatke zajame zajem.py in jih shrani v datoteko hribi.csv.
+Rezultati so shranjeni v datoteki analiza.ipynb.
 
 ## Analiza podatkov
 V datoreki analiza.ipynb sem podatke:
