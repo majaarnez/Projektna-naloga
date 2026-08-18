@@ -60,16 +60,8 @@ def zajem_stevilo_poti(url):
     return stevilo_poti
 
 def shrani_v_csv(hribi):
-    with open(
-        "hribi.csv", 
-        "w", 
-        newline = "", 
-        encoding="utf-8"
-    ) as datoteka:
-        writer = csv.DictWriter(
-            datoteka,
-            fieldnames=["ime", "visina", "stevilo_poti"]
-        )
+    with open("hribi.csv", "w", newline = "", encoding="utf-8") as datoteka:
+        writer = csv.DictWriter(datoteka, fieldnames=["ime", "visina", "stevilo_poti"])
 
         #zapišem podatke v scv
         writer.writeheader()
