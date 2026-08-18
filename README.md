@@ -16,4 +16,4 @@ V datoreki analiza.ipynb sem podatke:
 - prikazala povezavo med višino vrha in število poti
 
 ## Ugotovitve
-Z analizo podatkov sem ugotovila, da je najvišji vrh Julijsih alp Trigalv. Opazila sem tudi, da višina ne vpliva na število poti.
+Z analizo podatkov sem ugotovila, da je najvišji vrh Julijsih alp Trigalv, kateri ima tudi največje število poti. Opazila sem tudi, da višina ne vpliva na število poti.
